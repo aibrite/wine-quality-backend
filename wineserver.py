@@ -79,7 +79,7 @@ class WineServer:
     def run_server(self):
         print('Starting server...')
         if __name__ == 'wineserver':
-            server_address = 'localhost'
+            server_address = 'https://wine-quality.herokuapp.com/'
             server_port = int(os.environ.get('PORT', 5000))
             server = HTTPServer((server_address, server_port), RequestHandler)
             print('Server started, use <Ctrl-C> to stop')
