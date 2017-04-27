@@ -80,7 +80,7 @@ class WineServer:
         print('Starting server...')
         if __name__ == 'wineserver':
             server_address = 'localhost'
-            server_port = os.environ['PORT']
+            server_port = int(os.environ.get('PORT', 5000))
             server = HTTPServer((server_address, server_port), RequestHandler)
             print('Server started, use <Ctrl-C> to stop')
             server.serve_forever()
