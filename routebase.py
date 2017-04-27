@@ -1,8 +1,8 @@
 from quality import WineQuality
-from flask import request
+from flask import request, jsonify
 
 
-class WineApi:
+class WineBase:
 
     def home(self):
         print('Home')
@@ -11,7 +11,7 @@ class WineApi:
     def predict_wine(self):
         data = []
         params = request.form
-
+        print(params)
         for key in params:
             data.append(int(params[key]))
 
@@ -20,7 +20,8 @@ class WineApi:
         try:
             quality = quality_calculator.estimate_quality(data)
             print(quality)
-            return str(quality[0])
+            resp = {'prediction': str(quality[0])}
+            return jsonify(resp)
         except TypeError as e:
             return (e.args[0], 500)
         except ValueError as e:

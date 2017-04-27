@@ -1,11 +1,11 @@
-from routehandler import WineApi
+from routehandler import WineBase
 from flask import Flask, request
 from os import environ
 
 
 app = Flask('Wine Quality Prediction')
 
-route_handler = WineApi()
+route_handler = WineBase()
 
 
 @app.route("/")
