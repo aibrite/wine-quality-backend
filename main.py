@@ -5,10 +5,10 @@ from flask_cors import CORS, cross_origin
 
 
 app = Flask('Wine Quality Prediction')
-app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
+
+cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
 route_handler = WineBase()
 
 
