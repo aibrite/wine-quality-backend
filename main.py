@@ -1,10 +1,14 @@
 from routebase import WineBase
 from flask import Flask, request
 from os import environ
+from flask_cors import CORS, cross_origin
 
 
 app = Flask('Wine Quality Prediction')
+app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
+app.config['CORS_HEADERS'] = 'Content-Type'
 
+cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
 route_handler = WineBase()
 
 
@@ -14,10 +18,9 @@ def home_route():
 
 
 @app.route('/predict', methods=['POST'])
+@cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
 def prediction():
-    res = route_handler.predict_wine()
-    res.headers.add('Access-Control-Allow-Origin', '*')
-    return res
+    return route_handler.predict_wine()
 
 
 def run():
