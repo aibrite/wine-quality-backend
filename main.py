@@ -31,7 +31,7 @@ def run():
         server_address = '0.0.0.0'
         server_port = int(environ.get('PORT', 5000))
         print('Launch successful at port:', server_port)
-        app.run('localhost', 5258)
+        app.run(server_address, server_port)
 
 
 run()
