@@ -14,7 +14,7 @@ class WineQuality:
             raise ValueError('Not all values have been posted')
         else:
             for param in params:
-                if type(param) == int:
+                if type(param) == float:
                     knn = KNeighborsClassifier(n_neighbors=50)
                     try:
                         dfx = pd.read_csv('resources/winequality.txt',
