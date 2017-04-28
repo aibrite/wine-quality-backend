@@ -15,7 +15,9 @@ def home_route():
 
 @app.route('/predict', methods=['POST'])
 def prediction():
-    return route_handler.predict_wine()
+    res = route_handler.predict_wine()
+    res.headers.add('Access-Control-Allow-Origin', '*')
+    return res
 
 
 def run():
