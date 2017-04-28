@@ -1,12 +1,12 @@
 from quality import WineQuality
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 
 
 class WineBase:
 
     def home(self):
         print('Home')
-        return 'Home Page'
+        return render_template('Wine.html')
 
     def predict_wine(self):
         data = []

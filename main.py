@@ -4,7 +4,8 @@ from os import environ
 from flask_cors import CORS, cross_origin
 
 
-app = Flask('Wine Quality Prediction')
+app = Flask('Wine Quality Prediction',
+            static_folder='static', template_folder='templates')
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -30,7 +31,7 @@ def run():
         server_address = '0.0.0.0'
         server_port = int(environ.get('PORT', 5000))
         print('Launch successful at port:', server_port)
-        app.run(server_address, server_port)
+        app.run('localhost', 5258)
 
 
 run()
