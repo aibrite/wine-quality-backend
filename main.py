@@ -18,7 +18,7 @@ def home_route():
 
 
 @app.route('/predict', methods=['POST'])
-@cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
+@cross_origin()
 def prediction():
     return route_handler.predict_wine()
 
