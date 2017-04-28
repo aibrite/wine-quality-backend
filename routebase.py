@@ -13,7 +13,7 @@ class WineBase:
         params = request.form
         print(params)
         for key in params:
-            data.append(int(params[key]))
+            data.append(params[key])
 
         quality_calculator = self.quality_calculator
 
