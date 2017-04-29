@@ -78,7 +78,6 @@
 
 .header, .slider-section {
     padding-top: 2em;
-    padding-bottom: 2em;
 }
 
 .container {
@@ -102,4 +101,16 @@
     text-align: left;
     padding: 20px;
     padding-left: 50px;
+}
+
+.sub-header {
+    color: white;
+    padding-bottom: 2em;
+    text-align: left;
+    margin-top: 2em;
+    line-height: 3em;
+}
+
+.welcome {
+    font-size: 1.5em;
 }
