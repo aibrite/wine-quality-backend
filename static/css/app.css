@@ -114,3 +114,8 @@
 .welcome {
     font-size: 1.5em;
 }
+
+.explanation {
+    font-size: 1.2em;
+    line-height: 2em;
+}
