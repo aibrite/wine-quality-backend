@@ -62,7 +62,7 @@
     left: 0;
     top: 0;
     margin: auto;
-    color: #4c0404;
+    color: #f22438;
     white-space: nowrap;
     overflow: hidden;
     -webkit-text-stroke: 1px #777;
@@ -153,9 +153,10 @@
 .rating-container .caption {
     color: #999;
     display: inline-block;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     font-size: 60%;
-    margin-top: -0.6em;
+    /*margin-top: -0.6em;*/
+    margin-top: 10px;
 }
 
 .rating-container .caption {
@@ -176,3 +177,7 @@
         display: none;
     }
 }
+
+
+/* Custom */
+

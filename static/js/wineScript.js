@@ -10,7 +10,7 @@
         max: 15.9,
         step: 0.0001,
         name: 'alcohol0',
-        friendlyName: 'fixed acidity',
+        friendlyName: 'Fxed Acidity',
         unit: 'ml',
         initialValue: 7.4
     },
@@ -19,7 +19,7 @@
         max: 1.58,
         step: 0.0001,
         name: 'alcohol1',
-        friendlyName: 'volatile acidity',
+        friendlyName: 'Volatile Acidity',
         unit: 'ml',
         initialValue: 0.7
     },
@@ -28,7 +28,7 @@
         max: 1,
         step: 0.0001,
         name: 'alcohol2',
-        friendlyName: 'citric acid',
+        friendlyName: 'Citric Acid',
         unit: 'ml',
         initialValue: 0.03
     },
@@ -37,7 +37,7 @@
         max: 15.5,
         step: 0.0001,
         name: 'alcohol3',
-        friendlyName: 'residual sugar',
+        friendlyName: 'Residual Sugar',
         unit: 'ml',
         initialValue: 1.9
     },
@@ -46,7 +46,7 @@
         max: 0.611,
         step: 0.0001,
         name: 'alcohol4',
-        friendlyName: 'chlorides',
+        friendlyName: 'Chlorides',
         unit: '%',
         initialValue: 0.076
     },
@@ -55,7 +55,7 @@
         max: 72,
         step: 0.0001,
         name: 'alcohol5',
-        friendlyName: 'free sulfur dioxide',
+        friendlyName: 'Free Sulfur Dioxide',
         unit: '%',
         initialValue: 11
     },
@@ -64,7 +64,7 @@
         max: 289,
         step: 0.0001,
         name: 'alcohol6',
-        friendlyName: 'density',
+        friendlyName: 'Density',
         unit: '%',
         initialValue: 34
     },
@@ -82,7 +82,7 @@
         max: 4.01,
         step: 0.01,
         name: 'alcohol8',
-        friendlyName: 'total sulfur dioxid',
+        friendlyName: 'Total Sulfur Dioxide',
         unit: '%',
         initialValue: 3.51
     },
@@ -91,7 +91,7 @@
         max: 2,
         step: 0.0001,
         name: 'alcohol9',
-        friendlyName: 'sulphates',
+        friendlyName: 'Sulphates',
         unit: 'ml',
         initialValue: 0.56
     },
@@ -100,7 +100,7 @@
         max: 21,
         step: 0.0001,
         name: 'alcohol10',
-        friendlyName: 'alcohol',
+        friendlyName: 'Alcohol',
         unit: '%',
         initialValue: 9.4
     }]
@@ -108,6 +108,12 @@
     // var initialData = [7.4 , 0.7 , 0.03 , 1.9 , 0.076 , 11 , 34 , 0.9978 , 3.51 , 0.56 , 9.4];
     // var minData = [4.6, 0.12 , 0, 0.9 , 0.012 , 1 , 6 , 0.99007, 2.74 , 0.33 , 8.4];
     // var maxData = [15.9, 1.58, 1, 15.5, 0.611 , 72, 289,1.00369, 4.01 , 2, 14.9];
+
+    $(document).ready(function () {
+        // $('.container').fadeIn(2000);
+        // $('.container').slideDown(2000);
+        $('.container').show(1500)
+    })
 
     for (var i = 0; i < 11; i++) {
         // featureSet.push({
@@ -126,12 +132,13 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         $('#rateQuality').rating({ min: 0, max: 100, step: 1, stars: 5 });
-        $('#estimateQuality').rating({ displayOnly: true, step: 0.1, stars: 5 });
+        $('#estimateQuality').rating({ displayOnly: true, min: 0, max: 10, step: 0.1, stars: 5 });
         container = document.querySelector('.sliders');
         createFatureEditors();
         $("#rateQuality").rating().on("rating.clear", function (event) {
             console.log("Your rating is reset")
         }).on("rating.change", function (event, value, caption) {
+            $("#estimateQuality").rating("update", value / 10);
             console.log("You rated: " + value + " = " + $(caption).text());
             rate = value;
         });
@@ -145,7 +152,9 @@
             console.log('Posting...')
         }).done(function (data, status) {
             console.log(data)
-            alert("Selected Wine Quality: " + data.prediction);
+            //alert("Selected Wine Quality: " + data.prediction);
+            $("#estimateQuality").rating("update", data.prediction);
+            $(".quality-star").effect("shake", { times: 2 }, 1000);
         }).fail(function (err) {
             console.log(err)
             alert('Error. Please try again.')

@@ -10,7 +10,7 @@
             text-align: center;
         }
         .headerText{
-            color:#4c0404;
+            color:#f22438;
         }
         .footerText{
             color:white;
@@ -20,7 +20,7 @@
         }
 
 .rangeslider__fill {
-  background: #4c0404;
+  background: #f22438;
   position: absolute;
 }
 
@@ -73,4 +73,33 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+
+
+.header, .slider-section {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.container {
+    display: none;
+    margin-bottom: 100px;
+}
+
+.wine-img{
+    background-color: white;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.control-label {
+    font-size: 1.5em;
+}
+
+.site-footer{
+    color: white;
+    background: gray;
+    text-align: left;
+    padding: 20px;
+    padding-left: 50px;
 }

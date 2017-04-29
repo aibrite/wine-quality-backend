@@ -6,6 +6,8 @@
     <title>Wine</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.0/rangeslider.min.css">
@@ -31,31 +33,33 @@
 
 <body>
     <div class="container">
-        <div class="row text-center">
+        <div class="row text-center header">
 
-            <h2 style="color:#4c0404"><img src="../static/img/wine-512.png" height="50" width="50">Make Your Own Wine</h2>
+            <h1 style="color:#ed2135"><img class="wine-img" src="../static/img/wine-512.png" height="50" width="50">Make Your Own Wine</h1>
         </div>
-        <div class="row">
-            <div class="container">
+        <div class="row slider-section">
+            <div class="col-lg-9 col-xs-6">
                 <!--<label for="rateQuality" style="color:white;" class="control-label"></label>-->
-                <input id="rateQuality" name="rateQuality" value="50" class="rating-loading">
+                <input id="rateQuality" name="rateQuality" value="0" class="rating-loading">
             </div>
-            </br>
-            <div class="row">
-                <div class="col-lg-8 col-xs-6 sliders">
-
+            <div class="col-lg-3 col-xs-6">
+                <div class="text-center quality-star">
+                    <label for="estimateQuality" style="color:white;" class="control-label">Estimated Quality</label>
+                    <input id="estimateQuality" name="estimateQuality" value="0" class="rating-loading" data-size="xs">
                 </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="text-center">
-                        <label for="estimateQuality" style="color:white;" class="control-label">Estimated Quality</label>
-                        <input id="estimateQuality" name="estimateQuality" value="3.2" class="rating-loading" data-size="xs">
-                    </div>
-                    <!--<div style="padding:25px 8px;">
+                <!--<div style="padding:25px 8px;">
                         <img height="250" class="pull-right" src="http://www.winescenepalmbeach.com/wp-content/uploads/2016/06/grapes-bottle-and-glass-of-red-wine.jpg"
                             alt="Wine Picture">
                     </div>-->
-                </div>
             </div>
+            </br>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 sliders">
+
+            </div>
+
         </div>
     </div>
 
@@ -72,6 +76,12 @@
             </div>
         </div>
     </template>
+    <div class="row">
+        <div class="site-footer">
+            <h5>&copy 2017, Aibrite, Inc. All Rights Reserved.</h5>
+        </div>
+
+    </div>
 </body>
 
 </html>

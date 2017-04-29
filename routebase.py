@@ -6,7 +6,9 @@ class WineBase:
 
     def home(self):
         print('Home')
-        return render_template('Wine.html')
+        # return render_template('Wine.html')
+        html = open('templates/Wine.html', 'r').read()
+        return html
 
     def predict_wine(self):
         data = []
