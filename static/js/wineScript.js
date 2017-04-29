@@ -117,10 +117,10 @@
             //alert("Selected Wine Quality: " + data.prediction);
             $("#estimateQuality").rating("update", data.prediction);
             $(".quality-star").effect("shake", { times: 2 }, 1000);
-            $('.loading-img').hide()
+            $('.loading-img').css('visibility', 'hidden')
         }).fail(function (err) {
             console.log(err)
-            $('.loading-img').hide()
+            $('.loading-img').css('visibility', 'hidden')
             alert('Error. Please try again.')
         })
     }
@@ -129,7 +129,18 @@
         // $('.container').fadeIn(2000);
         // $('.container').slideDown(2000);
         $('.container').show(1500)
-        postData()
+        $.post('https://wine-quality.herokuapp.com/predict', featureData, function (data, status) {
+            console.log('Posting...')
+        }).done(function (data, status) {
+            console.log(data)
+            //alert("Selected Wine Quality: " + data.prediction);
+            $("#estimateQuality").rating("update", data.prediction);
+            $('.loading-img').css('visibility', 'hidden')
+        }).fail(function (err) {
+            console.log(err)
+            $('.loading-img').css('visibility', 'hidden')
+            alert('Error. Please try again.')
+        })
 
     })
 
@@ -209,7 +220,7 @@
 
                 // Callback function
                 onSlideEnd: function (position, value) {
-                    $('.loading-img').show()
+                    $('.loading-img').css('visibility', 'visible')
 
                     logToConsole();
                 }
