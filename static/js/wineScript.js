@@ -116,8 +116,11 @@
             console.log(data)
             //alert("Selected Wine Quality: " + data.prediction);
             $("#estimateQuality").rating("update", data.prediction);
-            $(".quality-star").effect("shake", { times: 2 }, 1000);
+            $(".quality-star").effect("shake", { times: 2 }, 1000)
             $('.loading-img').css('visibility', 'hidden')
+            $('html, body').animate({
+                scrollTop: $(".header").offset().top
+            }, 1000);
         }).fail(function (err) {
             console.log(err)
             $('.loading-img').css('visibility', 'hidden')
@@ -128,7 +131,9 @@
     $(document).ready(function () {
         // $('.container').fadeIn(2000);
         // $('.container').slideDown(2000);
-        $('.container').show(1500)
+        $('.container').show(1500, function () {
+            $('.site-img-container').hide();
+        })
         $.post('https://wine-quality.herokuapp.com/predict', featureData, function (data, status) {
             console.log('Posting...')
         }).done(function (data, status) {

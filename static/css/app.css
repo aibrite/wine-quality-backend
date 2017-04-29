@@ -139,3 +139,13 @@
     max-width: 35px;
     border-radius: 50%;
 }
+
+.site-img {
+    margin: 0 auto;
+    max-width: 30%;
+    opacity: 0.9;
+}
+
+.site-img-container {
+    text-align: center;
+}
