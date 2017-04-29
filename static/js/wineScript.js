@@ -10,7 +10,7 @@
         max: 15.9,
         step: 0.0001,
         name: 'alcohol0',
-        friendlyName: 'Fxed Acidity',
+        friendlyName: 'Fixed Acidity',
         unit: 'ml',
         initialValue: 7.4
     },

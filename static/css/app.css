@@ -11,9 +11,17 @@
         }
         .headerText{
             color:#f22438;
+            background: #ddd7d7;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
         }
         .footerText{
-            color:white;
+            color: white;
+            /*background: #ced3db;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;*/
         }
         .rangeslider--vertical {
             margin: 5px auto;
@@ -118,4 +126,8 @@
 .explanation {
     font-size: 1.2em;
     line-height: 2em;
+}
+
+.sliders {
+    margin-top: 30px;
 }
