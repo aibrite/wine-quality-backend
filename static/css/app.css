@@ -132,3 +132,8 @@
 .sliders {
     margin-top: 30px;
 }
+
+.loading-img {
+    max-width: 35px;
+    border-radius: 50%;
+}

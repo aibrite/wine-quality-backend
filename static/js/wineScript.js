@@ -6,113 +6,131 @@
     var container;
     var rate;
     var featureSet = [{
-        min: 4.6,
-        max: 15.9,
-        step: 0.0001,
+        min: 1,
+        max: 20,
+        step: 0.01,
         name: 'alcohol0',
         friendlyName: 'Fixed Acidity',
         unit: 'ml',
-        initialValue: 7.4
+        initialValue: 10.3
     },
     {
-        min: 0.12,
-        max: 1.58,
-        step: 0.0001,
+        min: 0.01,
+        max: 2,
+        step: 0.01,
         name: 'alcohol1',
         friendlyName: 'Volatile Acidity',
         unit: 'ml',
-        initialValue: 0.7
+        initialValue: 0.32
     },
     {
         min: 0,
-        max: 1,
-        step: 0.0001,
+        max: 1.5,
+        step: 0.01,
         name: 'alcohol2',
         friendlyName: 'Citric Acid',
         unit: 'ml',
-        initialValue: 0.03
+        initialValue: 0.45
     },
     {
-        min: 0.9,
-        max: 15.5,
-        step: 0.0001,
+        min: 0.1,
+        max: 20,
+        step: 0.01,
         name: 'alcohol3',
         friendlyName: 'Residual Sugar',
         unit: 'ml',
-        initialValue: 1.9
+        initialValue: 6.4
     },
     {
-        min: 0.012,
-        max: 0.611,
+        min: 0.001,
+        max: 1,
         step: 0.0001,
         name: 'alcohol4',
         friendlyName: 'Chlorides',
         unit: '%',
-        initialValue: 0.076
+        initialValue: 0.073
     },
     {
         min: 1,
-        max: 72,
-        step: 0.0001,
+        max: 100,
+        step: 0.1,
         name: 'alcohol5',
         friendlyName: 'Free Sulfur Dioxide',
         unit: '%',
-        initialValue: 11
+        initialValue: 5
     },
     {
-        min: 6,
-        max: 289,
-        step: 0.0001,
+        min: 1,
+        max: 400,
+        step: 0.1,
         name: 'alcohol6',
-        friendlyName: 'Density',
-        unit: '%',
-        initialValue: 34
-    },
-    {
-        min: 0.99007,
-        max: 1.00369,
-        step: 0.0001,
-        name: 'alcohol7',
-        friendlyName: 'pH',
-        unit: 'ml',
-        initialValue: 0.9978
-    },
-    {
-        min: 2.74,
-        max: 4.01,
-        step: 0.01,
-        name: 'alcohol8',
         friendlyName: 'Total Sulfur Dioxide',
         unit: '%',
-        initialValue: 3.51
+        initialValue: 13
     },
     {
-        min: 0.33,
-        max: 2,
-        step: 0.0001,
+        min: 0.1,
+        max: 1.5,
+        step: 0.001,
+        name: 'alcohol7',
+        friendlyName: 'Density',
+        unit: '%',
+        initialValue: 0.9976
+    },
+    {
+        min: 0.1,
+        max: 14,
+        step: 0.01,
+        name: 'alcohol8',
+        friendlyName: 'pH',
+        unit: '',
+        initialValue: 3.23
+    },
+    {
+        min: 0.1,
+        max: 4,
+        step: 0.01,
         name: 'alcohol9',
         friendlyName: 'Sulphates',
         unit: 'ml',
-        initialValue: 0.56
+        initialValue: 0.82
     },
     {
-        min: 8.4,
-        max: 21,
-        step: 0.0001,
+        min: 4,
+        max: 25,
+        step: 0.1,
         name: 'alcohol10',
         friendlyName: 'Alcohol',
         unit: '%',
-        initialValue: 9.4
+        initialValue: 12.6
     }]
     // var friendlyName = ['fixed acidity','volatile acidity','citric acid','residual sugar','chlorides','free sulfur dioxide','density','pH','total sulfur dioxid','sulphates','alcohol'];
     // var initialData = [7.4 , 0.7 , 0.03 , 1.9 , 0.076 , 11 , 34 , 0.9978 , 3.51 , 0.56 , 9.4];
     // var minData = [4.6, 0.12 , 0, 0.9 , 0.012 , 1 , 6 , 0.99007, 2.74 , 0.33 , 8.4];
     // var maxData = [15.9, 1.58, 1, 15.5, 0.611 , 72, 289,1.00369, 4.01 , 2, 14.9];
 
+    postData = function () {
+        $.post('https://wine-quality.herokuapp.com/predict', featureData, function (data, status) {
+            console.log('Posting...')
+        }).done(function (data, status) {
+            console.log(data)
+            //alert("Selected Wine Quality: " + data.prediction);
+            $("#estimateQuality").rating("update", data.prediction);
+            $(".quality-star").effect("shake", { times: 2 }, 1000);
+            $('.loading-img').hide()
+        }).fail(function (err) {
+            console.log(err)
+            $('.loading-img').hide()
+            alert('Error. Please try again.')
+        })
+    }
+
     $(document).ready(function () {
         // $('.container').fadeIn(2000);
         // $('.container').slideDown(2000);
         $('.container').show(1500)
+        postData()
+
     })
 
     for (var i = 0; i < 11; i++) {
@@ -148,17 +166,7 @@
         console.log(featureData);
 
         //Utku: JQuery Server Call 
-        $.post('https://wine-quality.herokuapp.com/predict', featureData, function (data, status) {
-            console.log('Posting...')
-        }).done(function (data, status) {
-            console.log(data)
-            //alert("Selected Wine Quality: " + data.prediction);
-            $("#estimateQuality").rating("update", data.prediction);
-            $(".quality-star").effect("shake", { times: 2 }, 1000);
-        }).fail(function (err) {
-            console.log(err)
-            alert('Error. Please try again.')
-        })
+        postData()
     }, 2000, false)
 
     function createFatureEditors() {
@@ -201,6 +209,8 @@
 
                 // Callback function
                 onSlideEnd: function (position, value) {
+                    $('.loading-img').show()
+
                     logToConsole();
                 }
             });
