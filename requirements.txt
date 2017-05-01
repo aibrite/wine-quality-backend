@@ -14,9 +14,7 @@ jedi==0.10.2
 Jinja2==2.9.6
 lazy-object-proxy==1.2.2
 MarkupSafe==1.0
-matplotlib==2.0.0
 mccabe==0.6.1
-mglearn==0.1.5
 numpy==1.12.1
 olefile==0.44
 pandas==0.19.2

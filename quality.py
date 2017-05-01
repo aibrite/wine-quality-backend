@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pandas as pd
-import mglearn
+# import mglearn
 from sklearn.neighbors import KNeighborsClassifier
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 class WineQuality:
