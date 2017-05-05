@@ -4,7 +4,7 @@ cache
 .vscode
 .idea
 __pycache__
-python
+debugenv
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
