@@ -1,5 +1,6 @@
 from quality import WineQuality
 from flask import request, jsonify, render_template
+from random import randint
 
 
 class WineBase:
@@ -9,6 +10,25 @@ class WineBase:
         # return render_template('Wine.html')
         html = open('templates/Wine.html', 'r').read()
         return html
+
+    def predict_index(self):
+        params = request.form
+        print(params)
+        data = str(params['desired'])
+
+        quality_list = open('resources/winequality.txt')
+        qualities = quality_list.readlines()
+
+        index = []
+
+        for line in qualities:
+            if line[len(line) - 2:len(line) - 1] == data:
+                index.append(line.split(';'))
+
+        indices = index[randint(0, len(index))]
+        indices.pop()
+        resp = {'predictedIndex': indices}
+        return jsonify(resp)
 
     def predict_wine(self):
         data = []

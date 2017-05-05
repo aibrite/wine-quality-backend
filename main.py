@@ -24,6 +24,12 @@ def prediction():
     return route_handler.predict_wine()
 
 
+@app.route('/predictindex', methods=['POST'])
+@cross_origin()
+def predict_index():
+    return route_handler.predict_index()
+
+
 def run():
     if __name__ == '__main__':
         print('Initializing Wine Quality Prediction App')

@@ -128,6 +128,26 @@
         })
     }
 
+    requestIndex = function (quality) {
+        $.post('https://wine-quality.herokuapp.com/predictindex', quality, function (data, status) {
+            console.log('Posting...')
+        }).done(function (data, status) {
+            console.log(data)
+            // $("#estimateQuality").rating("update", data.predictedIndex);
+            $('.loading-img').css('visibility', 'hidden')
+            for (var i = 0; i < 11; i++) {
+                sliders[i].setVal(data.predictedIndex[i])
+            }
+            $('html, body').animate({
+                scrollTop: $(".header").offset().top
+            }, 1000);
+        }).fail(function (err) {
+            console.log(err)
+            $('.loading-img').css('visibility', 'hidden')
+            alert('Cannot achieve selected quality. Please try a different quality index!')
+        })
+    }
+
     $(document).ready(function () {
         // $('.container').fadeIn(2000);
         // $('.container').slideDown(2000);
@@ -165,7 +185,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        $('#rateQuality').rating({ min: 0, max: 100, step: 1, stars: 5 });
+        $('#rateQuality').rating({ min: 0, max: 100, step: 10, stars: 5 });
         $('#estimateQuality').rating({ displayOnly: true, min: 0, max: 10, step: 0.1, stars: 5 });
         container = document.querySelector('.sliders');
         createFatureEditors();
@@ -173,8 +193,9 @@
             console.log("Your rating is reset")
         }).on("rating.change", function (event, value, caption) {
             $("#estimateQuality").rating("update", value / 10);
-            console.log("You rated: " + value + " = " + $(caption).text());
+            console.log("You requested a rate of: " + value + " = " + $(caption).text());
             rate = value;
+            requestIndex({ 'desired': value / 10 })
         });
     });
 
