@@ -1,0 +1,1 @@
+python35 main.py
